@@ -133,7 +133,7 @@ vector<ConvexPolygon> scale_for_draw(vector<string> pols, map<string, ConvexPoly
     //we want to have the largest side of the bbox
     double max_side = max(v[0].get_x()-v[3].get_x(), v[0].get_y()-v[1].get_y());
     double k; //number by which we will scale the polygons
-    k = abs(498/max_side);
+    k = abs(499/max_side);
     //we scale them and put them in the vector 
     vector<ConvexPolygon> new_cps;
     for (int i = 0; i < int(pols.size()); ++i){
