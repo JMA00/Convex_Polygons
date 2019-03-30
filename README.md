@@ -135,12 +135,12 @@ Given two polygons, the inside command prints `yes` or `not` to tell whether the
 
 The bbox command creates a new polygon with the four vertices corresponding to the bounding box of the given polygons.
 
-## Sample of polygon calculator
+## Sample of polygon calculator (1)
 
 If the file prova.txt is:
 ```
 p2 1.5 1.5 0.5 0.5 1.5 0.5 0.5 1.5
-p2 1 0 0 -1 1 -1 0 0
+p3 1 0 0 -1 1 -1 0 0
 ```
 
 <table>
@@ -156,7 +156,7 @@ perimeter p1
 vertices p1
 centroid p1
 save file1.txt p1
-load file2.txt
+load prova.txt
 list
 print p1
 print p2
@@ -171,6 +171,8 @@ setcol p3 0 0 1
 draw image.png p1 p2 p3
 bbox p6 p1 p2 p3 p4 p5
 print p6
+intersection p7 p1 p3
+print p7
 # some errors
 foobar
 print p
@@ -203,6 +205,92 @@ ok
 ok
 ok
 p6 0.000 -1.000 0.000 1.500 1.500 1.500 1.500 -1.000
+ok
+p7 0.000 0.000 1.000 0.000
+#
+error: unrecognized command
+error: undefined identifier
+```
+
+</td>
+</tr>
+</table>
+
+And the content of the file1.txt should be:
+`p1 0 0 0 1 1 1 1 0`
+
+## Sample of polygon calculator (2)
+
+If the file prova2.txt is:
+```
+p2 0 0 1 1 1 0
+p3 0.5 0 0.5 1 1.5 0 1.5 1
+```
+
+<table>
+<tr>
+<td>
+
+```
+# sample script for the polygon calculator
+polygon p1 0 0 0 1 1 0
+print p1
+area p1
+perimeter p1
+vertices p1
+centroid p1
+save file2.txt p1
+load prova2.txt
+list
+print p1
+print p2
+print p3
+union p4 p1 p2
+print p4
+intersection p5 p4 p3
+inside p4 p5
+setcol p1 1 0 0
+setcol p2 0 1 0
+setcol p3 0 0 1
+draw image.png p1 p2 p3
+bbox p6 p1 p2 p3 p4 p5
+print p6
+intersection p7 p1 p2
+print p7
+# some errors
+foobar
+print p
+```
+
+</td>
+<td>
+
+```
+#
+ok
+p1 0.000 0.000 0.000 1.000 1.000 0.000
+0.500
+3.414
+3
+0.333 0.333
+ok
+ok
+p1 p2 p3
+p1 0.000 0.000 0.000 1.000 1.000 0.000
+p2 0.000 0.000 1.000 1.000 1.000 0.000
+p3 0.500 0.000 0.500 1.000 1.500 1.000 1.500 0.000
+ok
+p4 0.000 0.000 0.000 1.000 1.000 1.000 1.000 0.000
+ok
+not
+ok
+ok
+ok
+ok
+ok
+p6 0.000 -1.000 0.000 1.500 1.500 1.500 1.500 -1.000
+ok
+p7 0.000 0.000 0.500 0.500 1.000 0.000
 #
 error: unrecognized command
 error: undefined identifier
