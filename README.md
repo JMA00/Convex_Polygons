@@ -53,12 +53,14 @@ Sembla que en Ubuntu potser cal que us instal·leu aquests paquets:
 ## Polygon calculator
 
 Once this is done, the project is ready to compile.
+
 Before executing it, there are some important things needed to be known:
+
 - Lines starting with a hash sign (#) are comments. Their output is just a hash sign.
 
 - All commands include polygon identifiers. These are made by words, such as p, p1, p2, or pol_gr.
 
-- Points in the commands are given by two pairs of real numbers, in standard notation, to denote the X and Y coordinates. For instance, 0 0 or 3.14 -5.5. When printed, all real numbers must be formatted with three digits after the decimal dot.
+- Points in the commands are given by two pairs of real numbers, in standard notation, to denote the X and Y coordinates. For instance, 0 0 or 3.14 -5.5. When printed, all real numbers will be formatted with three digits after the decimal dot.
 
 - Colors in the commands are given by three real numbers in [0,1], in standard notation, to denote the RGB color. For instance, 0 0 0 denotes black, 1 0 0 denotes red, and 1 0.64 0 denotes orange.
 
@@ -70,31 +72,33 @@ Before executing it, there are some important things needed to be known:
 
 ### The `polygon` command
 
-The polygon command associates an identifier with a convex polygon made by a set of zero or more points. If the polygon identifier is new, it will create it. If it already existed, it will overwrite the previous polygon. New polygons are black.
+The polygon command associates an identifier with a convex polygon made by a set of zero or more points, given by the user in any order, but always giving first X and then Y. The programm itself will calculate the convex_hull of the given points. If the polygon identifier is new, it will create it. If it already existed, it will overwrite the previous polygon. New polygons are black.
 
 ### The `print` command
 
 The print command prints the name and the vertices of a vertices of a given polygon. The output will only contain the vertices in the convex hull of the polygon, in clockwise order, starting from the vertex will lower X (and the vertex with lower Y in case of ties). They will be printed in a single line, with one space separating each value.
+(the user has to give the name of the polygon). Ex: print p1
 
 ### The `area` command
 
-The area command prints the area of the given polygon.
+The area command prints the area of the given polygon (the user has to give the name of the polygon). Ex: area p1
 
 ### The `perimeter` command
 
-The perimeter command prints the perimeter of the given polygon.
+The perimeter command prints the perimeter of the given polygon (the user has to give the name of the polygon). 
+Ex: perimeter p1
 
 ### The `vertices` command
 
-The vertices command prints the number of vertices of the convex hull of the given polygon.
+The vertices command prints the number of vertices of the convex hull of the given polygon (the user has to give the name of the polygon). Ex: vertices p1
 
 ### The `edges` command
 
-The vertices command prints the number of edges of the convex hull of the given polygon.
+The edges command prints the number of edges of the convex hull of the given polygon. (the user has to give the name of the polygon). Ex: edges p1
 
 ### The `centroid` command
 
-The centroid command prints the coordinates (first X, then Y)  of the centroid of the given polygon.
+The centroid command prints the coordinates (first X, then Y)  of the centroid of the given polygon (the user has to give the name of the polygon). Ex: area p1
 
 ### The `list` command
 
@@ -102,15 +106,15 @@ The list command lists all polygon identifiers, lexycographically sorted.
 
 ### The `save` command
 
-The save command saves the given polygons in a file, overwriting it if it already existed. The contents of the file will be the same as in the print command, with a polygon per line.
+The save command saves the given polygons in a file, overwriting it if it already existed. The contents of the file will be the same as in the print command, with a polygon per line. (the user has to give the name of the file and the polygon identifiers). Ex: save prova.txt p1 p2 p3
 
 ### The `load` command
 
-The load command loads the polygons stored in a file, in the same way as polygon, but retrieving the vertices and identifiers from the file.
+The load command loads the polygons stored in a file, in the same way as polygon, but retrieving the vertices and identifiers from the file. (the user has to give the name of the file). Ex: load file1.txt
 
 ### The `setcol` command
 
-The setcol command associates a color to the given polygon.
+The setcol command associates a color to the given polygon. (the user has to give the name of the polygon and the three numbers (see the information about colors at the beggining of the Polygon calculator)). Ex: setcol p1 1 0 0
 
 ### The `draw` command
 
@@ -120,9 +124,11 @@ The draw command draws a list of polygons in a PNG file, each one with its assoc
 
 This command may receive two or three parameters:
 
-- When receiving two parameters p1and p2, p1 will be updated to the intersection of the original p1 and p2.
+- When receiving two parameters p1 and p2, p1 will be updated to the intersection of the original p1 and p2.
 
 - When receiving three parameters p1, p2 and p3, p1 will  be updated to the intersection of p2 and p3.
+
+For example: intersection pol p p1.
 
 ### The `union` command
 
@@ -131,10 +137,12 @@ Just as the intersection command, but with the convex union of polygons.
 ### The `inside` command
 
 Given two polygons, the inside command prints `yes` or `not` to tell whether the first is inside the second or not.
+For example: inside p1 p2
 
 ### The `bbox` command
 
-The bbox command creates a new polygon with the four vertices corresponding to the bounding box of the given polygons.
+The bbox command creates a new polygon (whose identifier will be the first parameter read) with the four vertices corresponding to the bounding box of the given polygons.
+For example: bbox p4 p1 p2 p3
 
 ## Sample of polygon calculator (1)
 
