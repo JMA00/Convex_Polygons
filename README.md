@@ -9,6 +9,7 @@ First of all, to compile this programm it is necessary to do the following steps
 Aneu en algun directori temporal i baixeu-hi la llibreria pngwriter:
 
 `git clone https://github.com/pngwriter/pngwriter.git`
+
 Compileu la llibreria:
 ```
 # entreu al repositori amb el codi font de la llibreria que heu baixat
