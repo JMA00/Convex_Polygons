@@ -304,3 +304,4 @@ error: undefined identifier
 </table>
 
 
+And the content of file `file2.txt` should be: `p1 0 0 0 1 1 0`
